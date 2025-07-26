@@ -4,16 +4,16 @@
 
 <script setup>
 useHead({
-  title: 'Новость',
+  title: 'Работа портфолио',
   meta: [
-    { name: 'description', content: 'Описание моей страницы' }
+    { name: 'description', content: 'Описание работы из портфолио' }
   ]
 })
 
 definePageMeta({
   validate: async (route) => {
-    const id = parseInt(route.params.id)
-    return !isNaN(id)
+    // Проверяем что id существует, но не проверяем его валидность в БД
+    return !!route.params.id
   }
 })
 

@@ -43,10 +43,8 @@
           @touchend="handleTouchEnd"
           :style="{ transform: `translateX(${offsetX}px)` }"
         >
-
-
-          <div v-if="news.image" class="mb-4 w-full max-w-68 aspect-square">
-              <img :src="news.image" :alt="news.title" class="w-full rounded-lg">
+          <div v-if="item.image" class="mb-4 w-full max-w-68 aspect-square">
+              <img :src="item.image" :alt="item.title" class="w-full rounded-lg">
           </div>
           <button @click="$emit('close')" class="fixed top-0 right-0 z-[1000] w-8 h-8 flex items-center justify-center bg-white/80 rounded-full hover:bg-white">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-700" viewBox="0 0 20 20" fill="currentColor">
@@ -55,43 +53,18 @@
           </button>
 
           <div class="bg-white rounded-lg shadow-xl p-6">
-            <h2 class="text-2xl font-bold text-slate-700 mb-4">{{ news.title }}</h2>
-            <div class="prose text-slate-500 font-light text-lg" v-html="news.content"></div>
+            <h2 class="text-2xl font-bold text-slate-700 mb-4">{{ item.title }}</h2>
+            <div class="prose text-slate-500 font-light text-lg" v-if="item.description">{{ item.description }}</div>
           </div>
 
           <!-- Кнопки навигации для мобильных -->
-            <div class="flex justify-center md:hidden p-4 w-full">
-              <div class="flex gap-8 ">
-                <!--
-                <button 
-                  @click="$emit('navigate', index - 1)"
-                  class="flex items-center justify-center w-12 h-12 rounded-full bg-white/80 hover:bg-white text-slate-700 shadow-lg transition-all z-10"
-                  :class="{'opacity-50': index <= 0}"
-                  :disabled="index <= 0"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                  </svg>
-                  
-                </button>
-                -->
-                <div class="text-slate-200 flex items-center">
-                  Можно свайпом листать :)
-                </div>
-                <!--
-                <button 
-                  @click="$emit('navigate', index + 1)"
-                  class="flex items-center justify-center w-12 h-12 rounded-full bg-white/80 hover:bg-white text-slate-700 shadow-lg transition-all z-10"
-                  :class="{'opacity-50': index >= total - 1}"
-                  :disabled="index >= total - 1"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                  </svg>
-                </button>
-                -->
+          <div class="flex justify-center md:hidden p-4 w-full">
+            <div class="flex gap-8">
+              <div class="text-slate-200 flex items-center">
+                Можно свайпом листать :)
               </div>
             </div>
+          </div>
         </div>
       </div>
     </div>
@@ -102,9 +75,10 @@
 import { ref, watch } from 'vue'
 
 const props = defineProps({
-  news: {
+  item: {
     type: Object,
-    required: true
+    required: true,
+    default: () => ({})
   },
   index: {
     type: Number,

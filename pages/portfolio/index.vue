@@ -1,18 +1,18 @@
 <template>
   <div class="h-full">
-    <!-- Грид с новостями -->
-    <div v-if="newsList && newsList.length" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-6 md:px-12 py-12 mb-12 w-full xl:max-w-3/4 mx-auto content-center min-h-full">
+    <!-- Грид с работами -->
+    <div v-if="portfolioItems && portfolioItems.length" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-6 md:px-12 py-12 mb-12 w-full xl:max-w-3/4 mx-auto content-center min-h-full">
       <div 
-        v-for="(news, index) in newsList" 
-        :key="news.id" 
+        v-for="(item, index) in portfolioItems" 
+        :key="item._id" 
         class="flex flex-col items-center gap-2 cursor-pointer transition-transform duration-200 hover:scale-105"
         @click="openModal(index)"
       >
         <div class="bg-slate-200 w-full aspect-square rounded-lg overflow-hidden">
           <img 
-            v-if="news.image" 
-            :src="news.image" 
-            :alt="news.title" 
+            v-if="item.image" 
+            :src="item.image" 
+            :alt="item.title" 
             class="w-full h-full object-cover rounded-lg transition-transform duration-500 hover:scale-110"
           >
           <div v-else class="w-full h-full flex items-center justify-center text-gray-400">
@@ -21,22 +21,22 @@
             </svg>
           </div>
         </div>
-        <div class="text-slate-400 text-lg font-normal">{{ news.title }}</div>
+        <div class="text-slate-400 text-lg font-normal">{{ item.title }}</div>
       </div>
     </div>
     <div v-else class="text-center py-12">
-      {{ loading ? 'Загрузка новостей...' : 'Новости не найдены' }}
+      {{ loading ? 'Загрузка работ...' : 'Работы не найдены' }}
     </div>
 
     <!-- Модальное окно -->
     <ClientOnly>
-      <NewsModal 
+      <PortfolioModal 
         :is-open="isModalOpen"
-        :news="currentNews" 
+        :item="currentItem" 
         :index="currentIndex" 
-        :total="newsList.length" 
+        :total="portfolioItems.length" 
         @close="closeModal"
-        @navigate="navigateToNews"
+        @navigate="navigateToItem"
         @swipe-left="handleSwipeLeft"
         @swipe-right="handleSwipeRight"
       />
@@ -51,35 +51,35 @@ import { useRoute } from 'vue-router'
 useHead({
   title: 'Мое портфолио',
   meta: [
-    { name: 'description', content: 'Описание моей страницы' }
+    { name: 'description', content: 'Описание моего портфолио' }
   ]
 })
 
-const newsList = ref([])
+const portfolioItems = ref([])
 const loading = ref(true)
 const isModalOpen = ref(false)
 const currentIndex = ref(0)
 const route = useRoute()
 
 // Загрузка данных
-const fetchNews = async () => {
+const fetchPortfolioItems = async () => {
   try {
     const response = await fetch('http://desjo.ru/api/news')
     if (!response.ok) throw new Error('Ошибка загрузки')
     const data = await response.json()
-    newsList.value = data || []
+    portfolioItems.value = data || []
     
-    // Проверяем параметр из query после загрузки данных
+    // Автоматическое открытие модалки при наличии query параметра
     if (route.query.id) {
-      const index = newsList.value.findIndex(news => news.id.toString() === route.query.id)
+      const index = portfolioItems.value.findIndex(item => item._id === route.query.id)
       if (index !== -1) {
         currentIndex.value = index
         isModalOpen.value = true
       }
     }
   } catch (error) {
-    console.error('Ошибка загрузки новостей:', error)
-    newsList.value = []
+    console.error('Ошибка загрузки работ:', error)
+    portfolioItems.value = []
   } finally {
     loading.value = false
   }
@@ -87,15 +87,16 @@ const fetchNews = async () => {
 
 // Инициализация
 onMounted(async () => {
-  await fetchNews()
+  await fetchPortfolioItems()
 })
 
-const currentNews = computed(() => newsList.value[currentIndex.value] || {})
+const currentItem = computed(() => portfolioItems.value[currentIndex.value] || {})
 
 const openModal = (index) => {
   currentIndex.value = index
   isModalOpen.value = true
-  window.history.pushState({}, '', `/portfolio?id=${newsList.value[index].id}`)
+  // Обновляем URL без перезагрузки страницы
+  window.history.pushState({}, '', `/portfolio?id=${portfolioItems.value[index]._id}`)
 }
 
 const closeModal = () => {
@@ -103,15 +104,16 @@ const closeModal = () => {
   window.history.pushState({}, '', '/portfolio')
 }
 
-const navigateToNews = (index) => {
+const navigateToItem = (index) => {
   currentIndex.value = index
-  window.history.pushState({}, '', `/portfolio?id=${newsList.value[index].id}`)
+  isModalOpen.value = true
+  window.history.pushState({}, '', `/portfolio?id=${portfolioItems.value[index]._id}`)
 }
 
-// Обработка изменения маршрута
+// Обработка изменения URL
 watch(() => route.query.id, (newId) => {
-  if (newId && newsList.value.length) {
-    const index = newsList.value.findIndex(news => news.id.toString() === newId)
+  if (newId && portfolioItems.value.length) {
+    const index = portfolioItems.value.findIndex(item => item._id === newId)
     if (index !== -1) {
       currentIndex.value = index
       isModalOpen.value = true
@@ -121,14 +123,14 @@ watch(() => route.query.id, (newId) => {
 
 // Обработка свайпов
 const handleSwipeLeft = () => {
-  if (currentIndex.value < newsList.value.length - 1) {
-    navigateToNews(currentIndex.value + 1)
+  if (currentIndex.value < portfolioItems.value.length - 1) {
+    navigateToItem(currentIndex.value + 1)
   }
 }
 
 const handleSwipeRight = () => {
   if (currentIndex.value > 0) {
-    navigateToNews(currentIndex.value - 1)
+    navigateToItem(currentIndex.value - 1)
   }
 }
 </script>
