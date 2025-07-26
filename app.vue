@@ -1,5 +1,5 @@
 <template>
-  <div class="flex h-full">
+  <div class="flex">
     <!-- Фиксированный Sidebar с улучшенной анимацией -->
     <div 
       class="fixed h-full w-64 z-10 transform transition-all duration-200 ease-out"
