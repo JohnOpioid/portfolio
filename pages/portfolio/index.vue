@@ -48,6 +48,13 @@
 import { ref, computed, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
+useHead({
+  title: 'Мое портфолио',
+  meta: [
+    { name: 'description', content: 'Описание моей страницы' }
+  ]
+})
+
 const newsList = ref([])
 const loading = ref(true)
 const isModalOpen = ref(false)

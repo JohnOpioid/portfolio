@@ -3,6 +3,13 @@
 </template>
 
 <script setup>
+useHead({
+  title: 'Новость',
+  meta: [
+    { name: 'description', content: 'Описание моей страницы' }
+  ]
+})
+
 definePageMeta({
   validate: async (route) => {
     const id = parseInt(route.params.id)
