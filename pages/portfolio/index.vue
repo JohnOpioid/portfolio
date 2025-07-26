@@ -4,7 +4,7 @@
     <div v-if="newsList && newsList.length" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-6 md:px-12 py-12 mb-12 w-full xl:max-w-3/4 mx-auto content-center min-h-full">
       <div 
         v-for="(news, index) in newsList" 
-        :key="index" 
+        :key="news.id" 
         class="flex flex-col items-center gap-2 cursor-pointer transition-transform duration-200 hover:scale-105"
         @click="openModal(index)"
       >
@@ -64,15 +64,15 @@ const route = useRoute()
 // Загрузка данных
 const fetchNews = async () => {
   try {
-    const response = await fetch('/data/news.json')
+    const response = await fetch('http://desjo.ru/api/news')
     if (!response.ok) throw new Error('Ошибка загрузки')
     const data = await response.json()
     newsList.value = data || []
     
     // Проверяем параметр из query после загрузки данных
     if (route.query.id) {
-      const index = parseInt(route.query.id)
-      if (!isNaN(index) && index >= 0 && index < newsList.value.length) {
+      const index = newsList.value.findIndex(news => news.id.toString() === route.query.id)
+      if (index !== -1) {
         currentIndex.value = index
         isModalOpen.value = true
       }
@@ -95,7 +95,7 @@ const currentNews = computed(() => newsList.value[currentIndex.value] || {})
 const openModal = (index) => {
   currentIndex.value = index
   isModalOpen.value = true
-  window.history.pushState({}, '', `/portfolio/${index}`)
+  window.history.pushState({}, '', `/portfolio?id=${newsList.value[index].id}`)
 }
 
 const closeModal = () => {
@@ -105,14 +105,14 @@ const closeModal = () => {
 
 const navigateToNews = (index) => {
   currentIndex.value = index
-  window.history.pushState({}, '', `/portfolio/${index}`)
+  window.history.pushState({}, '', `/portfolio?id=${newsList.value[index].id}`)
 }
 
 // Обработка изменения маршрута
 watch(() => route.query.id, (newId) => {
   if (newId && newsList.value.length) {
-    const index = parseInt(newId)
-    if (!isNaN(index) && index >= 0 && index < newsList.value.length) {
+    const index = newsList.value.findIndex(news => news.id.toString() === newId)
+    if (index !== -1) {
       currentIndex.value = index
       isModalOpen.value = true
     }
