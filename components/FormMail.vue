@@ -261,6 +261,24 @@ export default {
       handleButtonClick,
       submitForm
     }
+  }, 
+  watch: {
+    showForm(newVal) {
+      // Для дополнительной надежности можно добавить обработку на уровне body
+      if (process.client) {
+        if (newVal) {
+          document.body.style.overflow = 'hidden'
+        } else {
+          document.body.style.overflow = ''
+        }
+      }
+    }
+  },
+  beforeDestroy() {
+    // Восстанавливаем скролл при уничтожении компонента
+    if (process.client) {
+      document.body.style.overflow = ''
+    }
   }
 }
 </script>
