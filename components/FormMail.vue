@@ -5,7 +5,7 @@
       <div 
         v-if="showForm"
         @click="closeForm"
-        class="fixed inset-0 bg-slate-700/20 bg-opacity-50 z-10 pt-[2rem] pb-[4.5rem]"
+        class="fixed inset-0 bg-slate-700/20 bg-opacity-50 z-10 pt-[2rem] pb-[2rem]"
       ></div>
     </transition>
 
@@ -13,7 +13,7 @@
     <transition name="slide-up">
       <div 
         v-if="showForm"
-        class="fixed bottom-[5.5rem] left-0 right-0 bg-white p-6 border-t border-slate-200/75 z-20 mx-4 rounded-lg shadow-sm max-w-full md:max-w-80 md:ml-60 xl:ml-75 flex flex-col items-center"
+        class="sticky bottom-[7rem] bg-white p-6 border-t border-slate-200/75 z-20 rounded-lg shadow-sm max-w-full md:max-w-80 flex flex-col items-center"
       >
         <transition name="fade" mode="out-in">
           <!-- Loading state -->
@@ -88,7 +88,7 @@
     <!-- Bottom panel -->
     <div 
       :class="[
-        'flex px-6 md:px-12 py-4 border-t-1 border-slate-200/75 relative z-30 transition-colors duration-200',
+        'flex px-6 mt-6 md:px-12 py-4 border rounded-xl border-slate-200/75 relative z-30 transition-colors duration-200',
         hasMessageError ? 'bg-red-100' : 'bg-white'
       ]"
     >
@@ -260,6 +260,25 @@ export default {
       closeForm,
       handleButtonClick,
       submitForm
+    }
+  },
+  
+  watch: {
+    showForm(newVal) {
+      // Для дополнительной надежности можно добавить обработку на уровне body
+      if (process.client) {
+        if (newVal) {
+          document.body.style.overflow = 'hidden'
+        } else {
+          document.body.style.overflow = ''
+        }
+      }
+    }
+  },
+  beforeDestroy() {
+    // Восстанавливаем скролл при уничтожении компонента
+    if (process.client) {
+      document.body.style.overflow = ''
     }
   }
 }
