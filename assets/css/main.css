@@ -9,6 +9,9 @@ html, body, #__nuxt {
 }
 
 @layer components {
+  .prose {
+    @apply text-slate-600 whitespace-pre-wrap font-light;
+  }
   .prose h1 {
     @apply text-2xl font-bold mb-4;
   }

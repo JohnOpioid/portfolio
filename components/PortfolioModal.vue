@@ -65,12 +65,12 @@
             <div v-if="Array.isArray(item.content)" class="space-y-6">
               <template v-for="(block, i) in item.content" :key="i">
                 <!-- Описание работы -->
-                <div v-if="block.type === 'description'" class="text-slate-600">
+                <div v-if="block.type === 'description'" class="text-slate-600 whitespace-pre-wrap font-light">
                   <div class="prose" v-html="renderMarkdown(block.value)"></div>
                 </div>
 
                 <!-- Текстовый блок -->
-                <div v-else-if="block.type === 'text'" class="text-slate-600 whitespace-pre-wrap">
+                <div v-else-if="block.type === 'text'" class="text-slate-600 whitespace-pre-wrap font-light">
                   {{ block.value }}
                 </div>
 
