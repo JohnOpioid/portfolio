@@ -43,7 +43,7 @@
           @touchend="handleTouchEnd"
           :style="{ transform: `translateX(${offsetX}px)` }"
         >
-          <div v-if="item.image" class="mb-4 w-full max-w-68 aspect-square">
+          <div v-if="item.image" class="mb-4 w-full aspect-square">
               <img :src="item.image" :alt="item.title" class="w-full rounded-lg">
           </div>
           <button @click="$emit('close')" class="fixed top-0 right-0 z-[1000] w-8 h-8 flex items-center justify-center bg-white/80 rounded-full hover:bg-white">
@@ -54,7 +54,7 @@
 
           <div class="bg-white rounded-lg shadow-xl p-6">
             <h2 class="text-2xl font-bold text-slate-700 mb-4">{{ item.title }}</h2>
-            <div class="prose text-slate-500 font-light text-lg" v-if="item.description">{{ item.description }}</div>
+            <div class="prose text-slate-500 font-light text-lg" v-if="item.content">{{ item.content }}</div>
           </div>
 
           <!-- Кнопки навигации для мобильных -->

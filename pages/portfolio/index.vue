@@ -10,8 +10,8 @@
       >
         <div class="bg-slate-200 w-full aspect-square rounded-lg overflow-hidden">
           <img 
-            v-if="item.image" 
-            :src="item.image" 
+            v-if="item.coverImage" 
+            :src="getFullImageUrl(item.coverImage)" 
             :alt="item.title" 
             class="w-full h-full object-cover rounded-lg transition-transform duration-500 hover:scale-110"
           >
@@ -61,10 +61,15 @@ const isModalOpen = ref(false)
 const currentIndex = ref(0)
 const route = useRoute()
 
+// Функция для получения полного URL изображения
+const getFullImageUrl = (path) => {
+  return `https://desjo.ru${path}`
+}
+
 // Загрузка данных
 const fetchPortfolioItems = async () => {
   try {
-    const response = await fetch('http://desjo.ru/api/news')
+    const response = await fetch('https://desjo.ru/api/portfolio')
     if (!response.ok) throw new Error('Ошибка загрузки')
     const data = await response.json()
     portfolioItems.value = data || []
@@ -90,7 +95,17 @@ onMounted(async () => {
   await fetchPortfolioItems()
 })
 
-const currentItem = computed(() => portfolioItems.value[currentIndex.value] || {})
+const currentItem = computed(() => {
+  const item = portfolioItems.value[currentIndex.value] || {}
+  // Добавляем полный URL для изображения в текущем элементе
+  if (item.coverImage) {
+    return {
+      ...item,
+      image: getFullImageUrl(item.coverImage)
+    }
+  }
+  return item
+})
 
 const openModal = (index) => {
   currentIndex.value = index
