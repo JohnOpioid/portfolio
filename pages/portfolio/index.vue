@@ -14,6 +14,7 @@
             :src="getFullImageUrl(item.coverImage)" 
             :alt="item.title" 
             class="w-full h-full object-cover rounded-lg transition-transform duration-500 hover:scale-110"
+            loading="lazy"
           >
           <div v-else class="w-full h-full flex items-center justify-center text-gray-400">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -31,6 +32,7 @@
     <!-- Модальное окно -->
     <ClientOnly>
       <PortfolioModal 
+        v-if="portfolioItems.length"
         :is-open="isModalOpen"
         :item="currentItem" 
         :index="currentIndex" 
@@ -63,16 +65,18 @@ const route = useRoute()
 
 // Функция для получения полного URL изображения
 const getFullImageUrl = (path) => {
-  return `https://desjo.ru${path}`
+  if (!path) return ''
+  return path.startsWith('http') ? path : `https://desjo.ru${path}`
 }
 
 // Загрузка данных
 const fetchPortfolioItems = async () => {
   try {
+    loading.value = true
     const response = await fetch('https://desjo.ru/api/portfolio')
     if (!response.ok) throw new Error('Ошибка загрузки')
     const data = await response.json()
-    portfolioItems.value = data || []
+    portfolioItems.value = Array.isArray(data) ? data : []
     
     // Автоматическое открытие модалки при наличии query параметра
     if (route.query.id) {
@@ -96,18 +100,18 @@ onMounted(async () => {
 })
 
 const currentItem = computed(() => {
+  if (!portfolioItems.value.length) return {}
   const item = portfolioItems.value[currentIndex.value] || {}
   // Добавляем полный URL для изображения в текущем элементе
-  if (item.coverImage) {
-    return {
-      ...item,
-      image: getFullImageUrl(item.coverImage)
-    }
+  return {
+    ...item,
+    coverImage: item.coverImage ? getFullImageUrl(item.coverImage) : null,
+    content: item.content || []
   }
-  return item
 })
 
 const openModal = (index) => {
+  if (index < 0 || index >= portfolioItems.value.length) return
   currentIndex.value = index
   isModalOpen.value = true
   // Обновляем URL без перезагрузки страницы
@@ -120,6 +124,7 @@ const closeModal = () => {
 }
 
 const navigateToItem = (index) => {
+  if (index < 0 || index >= portfolioItems.value.length) return
   currentIndex.value = index
   isModalOpen.value = true
   window.history.pushState({}, '', `/portfolio?id=${portfolioItems.value[index]._id}`)

@@ -7,3 +7,30 @@ html, body, #__nuxt {
 
     @apply bg-slate-50
 }
+
+@layer components {
+  .prose h1 {
+    @apply text-2xl font-bold mb-4;
+  }
+  .prose h2 {
+    @apply text-xl font-bold mb-3;
+  }
+  .prose h3 {
+    @apply text-lg font-bold mb-2;
+  }
+  .prose strong {
+    @apply font-bold;
+  }
+  .prose em {
+    @apply italic;
+  }
+  .prose a {
+    @apply text-blue-500 hover:underline;
+  }
+  .prose hr {
+    @apply my-4 border-t border-gray-200;
+  }
+  .prose del {
+    @apply line-through text-gray-400;
+  }
+}
