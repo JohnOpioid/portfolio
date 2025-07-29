@@ -1,7 +1,7 @@
 <template>
   <div class="h-full content-center min-h-full">
     <div class="flex flex-col gap-1 px-6 md:px-12 py-6 pt-15 w-full xl:max-w-3/4 mx-auto content-center">
-      <div class="text-slate-500 font-bold text-2xl uppercase">Мои работы</div>
+      <div class="text-slate-700 font-bold text-3xl uppercase">Портфолио</div>
       <p class="w-full text-slate-500 font-light text-xl">Выложена только часть моих работ на остальные наложен NDA. По мере возможности буду дополнять портфолио.</p>
     </div>
 

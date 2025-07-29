@@ -143,9 +143,9 @@ const downloadVCard = () => {
       </button>
     </div>
 
-    <div class="inline-block max-w-75 bg-white rounded-lg border border-slate-200/75 text-slate-500 shadow-xs overflow-hidden">
+    <div class="hidden md:inline-block max-w-75 bg-white rounded-lg border border-slate-200/75 text-slate-500 shadow-xs overflow-hidden">
       <div class="bg-slate-200/75 p-4 w-full max-w-75"><img src="/QR.svg" alt=""></div>
-      <p class="p-3 max-full text-slate-500 font-light text-lg">По этому QR-коду можно перейти в мой Telegram канал. Не забудь подписаться. ☺️</p>
+      <p class="p-3 max-full text-slate-500 font-light text-lg">Отсканируйте этот QR-код, сохранить мои контакты к себе на телефон. ☺️</p>
     </div>
   </div>
 
