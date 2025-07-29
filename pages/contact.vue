@@ -16,10 +16,7 @@ const form = ref({
 })
 
 const submitForm = () => {
-  // Здесь можно добавить обработку формы
   console.log('Форма отправлена:', form.value)
-  
-  // Сбрасываем форму и скрываем
   form.value = { name: '', phone: '', email: '' }
   showForm.value = false
 }
@@ -33,7 +30,8 @@ const contacts = ref([
       }
     ],
     title: 'Телефон',
-    data: '+7 (980) 010-30-03'
+    data: '+7 (980) 010-30-03',
+    type: 'phone'
   },
   {
     icons: [
@@ -43,7 +41,8 @@ const contacts = ref([
       }
     ],
     title: 'E-mail',
-    data: 'desjohnone@yandex.ru'
+    data: 'desjohnone@yandex.ru',
+    type: 'email'
   },
   {
     icons: [
@@ -53,13 +52,50 @@ const contacts = ref([
       }
     ],
     title: 'Telegram',
-    data: '@desjohnone'
+    data: '@desjohnone',
+    type: 'telegram'
   },
 ])
+
+const handleContactClick = (contact) => {
+  switch(contact.type) {
+    case 'phone':
+      window.location.href = `tel:${contact.data.replace(/[^0-9+]/g, '')}`
+      break
+    case 'email':
+      window.location.href = `mailto:${contact.data}`
+      break
+    case 'telegram':
+      window.open(`https://t.me/${contact.data.replace('@', '')}`, '_blank')
+      break
+  }
+}
+
+const downloadVCard = () => {
+  const vCardData = [
+    'BEGIN:VCARD',
+    'VERSION:3.0',
+    `FN:Евгений Одинцов (Desjo)`,
+    `TEL;TYPE=CELL:${contacts.value[0].data.replace(/[^0-9+]/g, '')}`,
+    `EMAIL:${contacts.value[1].data}`,
+    `URL:https://t.me/${contacts.value[2].data.replace('@', '')}`,
+    'END:VCARD'
+  ].join('\n')
+
+  const blob = new Blob([vCardData], { type: 'text/vcard' })
+  const url = URL.createObjectURL(blob)
+  
+  const a = document.createElement('a')
+  a.href = url
+  a.download = 'desjo_contact.vcf'
+  document.body.appendChild(a)
+  a.click()
+  document.body.removeChild(a)
+  URL.revokeObjectURL(url)
+}
 </script>
 
 <template>
-
 <div class="flex flex-col gap-0 min-h-screen bg-[url(/pattern.svg)] bg-center bg-repeat bg-contain bg-fixed">
   <div class="flex flex-col flex-grow px-6 md:px-12 pt-12 gap-8 w-full xl:max-w-3/4 mx-auto">
 
@@ -71,15 +107,15 @@ const contacts = ref([
 
     <div class="max-w-70">
       <div class="p-1.5 bg-white rounded-lg border border-slate-200/75 text-slate-500 shadow-xs">
-        <div class="flex flex-col ">
+        <div class="flex flex-col">
           <div 
-          v-for="(contact, index) in contacts" 
+            v-for="(contact, index) in contacts" 
             :key="index"
             class="flex gap-3 cursor-pointer rounded hover:bg-slate-100 p-2.5"
+            @click="handleContactClick(contact)"
           >
-            <a 
+            <div 
               v-for="(icon, iconIndex) in contact.icons" 
-              href="#"
               :key="iconIndex"
               class="aspect-square p-2 flex items-center justify-center w-12 h-12 rounded relative"
               :class="icon.bgColor || contact.bgColor || 'bg-slate-500'"
@@ -89,7 +125,7 @@ const contacts = ref([
                 class="w-6 h-6"
                 :class="icon.class || ''"
               >
-            </a>
+            </div>
             <div class="block">
               <div class="text-slate-400">{{ contact.title }}</div>
               <div class="font-semibold text-slate-600">{{ contact.data }}</div>
@@ -98,7 +134,13 @@ const contacts = ref([
           <p class="p-1.5 text-slate-500 font-light text-lg">Вы можете скачать мою цифровую визитку, нажав на кнопку ниже. 👇</p>
         </div>
       </div>
-      <button type="button" class="block w-full bg-indigo-400/75 hover:bg-indigo-500/75 text-slate-50 font-semibold rounded py-2 px-4 mt-2 cursor-pointer">Сохранить визитку</button>
+      <button 
+        type="button" 
+        class="block w-full bg-indigo-400/75 hover:bg-indigo-500/75 text-slate-50 font-semibold rounded py-2 px-4 mt-2 cursor-pointer"
+        @click="downloadVCard"
+      >
+        Сохранить визитку
+      </button>
     </div>
 
     <div class="inline-block max-w-75 bg-white rounded-lg border border-slate-200/75 text-slate-500 shadow-xs overflow-hidden">
@@ -127,11 +169,8 @@ const contacts = ref([
         <FormMail />
     </div>
   </div>
-
 </div>
-
 </template>
 
 <style scoped>
-
 </style>

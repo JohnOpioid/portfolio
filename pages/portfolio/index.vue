@@ -1,7 +1,12 @@
 <template>
-  <div class="h-full">
+  <div class="h-full content-center min-h-full">
+    <div class="flex flex-col gap-1 px-6 md:px-12 py-6 pt-15 w-full xl:max-w-3/4 mx-auto content-center">
+      <div class="text-slate-500 font-bold text-2xl uppercase">Мои работы</div>
+      <p class="w-full text-slate-500 font-light text-xl">Выложена только часть моих работ на остальные наложен NDA. По мере возможности буду дополнять портфолио.</p>
+    </div>
+
     <!-- Грид с работами -->
-    <div v-if="portfolioItems && portfolioItems.length" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-6 md:px-12 py-12 mb-12 w-full xl:max-w-3/4 mx-auto content-center min-h-full">
+    <div v-if="portfolioItems && portfolioItems.length" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-6 md:px-12 py-6 mb-12 w-full xl:max-w-3/4 mx-auto">
       <div 
         v-for="(item, index) in portfolioItems" 
         :key="item._id" 
