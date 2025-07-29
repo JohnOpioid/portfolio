@@ -101,13 +101,13 @@ const downloadVCard = () => {
 <div class="flex flex-col gap-0 min-h-screen bg-[url(/pattern.svg)] bg-center bg-repeat bg-contain bg-fixed">
   <div class="flex flex-col flex-grow px-6 md:px-12 pt-12 gap-8 w-full xl:max-w-3/4 mx-auto">
 
-    <div class="inline-block p-3 bg-white rounded-lg border border-slate-200/75 text-slate-500 shadow-xs max-w-85">
+    <div class="inline-block p-3 bg-white rounded-lg border border-slate-200/75 text-slate-500 shadow-xs w-full md:max-w-85">
       <Status />
       <p class="mt-2 font-bold text-slate-600 text-lg">Ниже представлены мои контакты. Пишите, звоните не стесняйтесь. Я всегда на связи.</p>
       <p class="mt-2">🌙 <span class="italic text-slate-500 font-light text-lg">Да-да, даже ночью...</span></p>
     </div>
 
-    <div class="max-w-70">
+    <div class="w-full md:max-w-70">
       <div class="p-1.5 bg-white rounded-lg border border-slate-200/75 text-slate-500 shadow-xs">
         <div class="flex flex-col">
           <div 
@@ -145,15 +145,15 @@ const downloadVCard = () => {
       </button>
     </div>
 
-    <div class="hidden md:inline-block max-w-75 bg-white rounded-lg border border-slate-200/75 text-slate-500 shadow-xs overflow-hidden">
+    <div class="hidden md:inline-block w-full md:max-w-75 bg-white rounded-lg border border-slate-200/75 text-slate-500 shadow-xs overflow-hidden">
       <div class="bg-slate-200/75 p-4 w-full max-w-75"><img src="/QR.svg" alt=""></div>
       <p class="p-3 max-full text-slate-500 font-light text-lg">Отсканируйте этот QR-код, сохранить мои контакты к себе на телефон. ☺️</p>
     </div>
   </div>
 
   <div class="inline-flex items-center justify-center w-full">
-      <hr class="w-full h-px my-20 bg-slate-200 border-0 dark:bg-gray-700">
-      <span class="absolute px-6 py-1 text-sm font-medium text-nowrap text-slate-400 -translate-x-1/2 md:ms-20 lg:ms-40 bg-white left-1/2 dark:text-white dark:bg-gray-900 rounded-full border border-slate-200 uppercase">Обратная связь</span>
+      <hr class="w-full h-px my-20 bg-slate-200 border-0">
+      <span class="absolute px-6 py-1 text-sm font-medium text-nowrap text-slate-400 -translate-x-1/2 md:ms-20 lg:ms-40 bg-white left-1/2 rounded-full border border-slate-200 uppercase">Обратная связь</span>
   </div>
 
   <div class="flex flex-col">
