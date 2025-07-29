@@ -136,7 +136,7 @@ const downloadVCard = () => {
       </div>
       <button 
         type="button" 
-        class="block w-full bg-indigo-400/75 hover:bg-indigo-500/75 text-slate-50 font-semibold rounded py-2 px-4 mt-2 cursor-pointer"
+        class="block w-full bg-indigo-500 hover:bg-indigo-400 text-slate-50 font-semibold rounded py-2 px-4 mt-2 cursor-pointer"
         @click="downloadVCard"
       >
         Сохранить визитку
