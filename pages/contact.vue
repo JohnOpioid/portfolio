@@ -78,7 +78,9 @@ const downloadVCard = () => {
     `FN:Евгений Одинцов (Desjo)`,
     `TEL;TYPE=CELL:${contacts.value[0].data.replace(/[^0-9+]/g, '')}`,
     `EMAIL:${contacts.value[1].data}`,
+    `URL:https://desjo.ru`,
     `URL:https://t.me/${contacts.value[2].data.replace('@', '')}`,
+    `NOTE:Telegram: @desjohnone`,
     'END:VCARD'
   ].join('\n')
 
