@@ -4,8 +4,12 @@
 
 <template>
 <!-- Боковая колонка (1/3 ширины) -->
-<aside class="fixed bg-white h-full p-6 xl:p-12 shadow-md w-50 xl:w-68">
+<aside class="fixed bg-white h-full p-6 xl:p-12 shadow-md w-[12.5rem] xl:w-[17rem]">
+    <div class="hidden md:flex justify-start">
+            <Status />
+        </div>
     <div class="flex flex-col h-full space-y-4">
+        
         <div class="grow content-center">
             <div class="flex flex-col mt-2 space-y-5">
                 <NuxtLink

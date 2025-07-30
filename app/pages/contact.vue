@@ -99,15 +99,14 @@ const downloadVCard = () => {
 
 <template>
 <div class="flex flex-col gap-0 min-h-screen bg-[url(/pattern.svg)] bg-center bg-repeat bg-contain bg-fixed">
-  <div class="flex flex-col flex-grow px-6 md:px-12 pt-12 gap-8 w-full xl:max-w-3/4 mx-auto">
+  <div class="flex flex-col px-6 py-8 md:px-12 gap-8 w-full xl:max-w-7xl mx-auto">
 
-    <div class="inline-block p-3 bg-white rounded-lg border border-slate-200/75 text-slate-500 shadow-xs w-full md:max-w-85">
-      <Status />
-      <p class="mt-2 font-bold text-slate-600 text-lg">Ниже представлены мои контакты. Пишите, звоните не стесняйтесь. Я всегда на связи.</p>
+    <div class="inline-block p-3 bg-white rounded-lg border border-slate-200/75 text-slate-500 shadow-xs w-full md:max-w-md">
+      <p class="font-bold text-slate-600 text-lg">Ниже представлены мои контакты. Пишите, звоните не стесняйтесь. Я всегда на связи.</p>
       <p class="mt-2">🌙 <span class="italic text-slate-500 font-light text-lg">Да-да, даже ночью...</span></p>
     </div>
 
-    <div class="w-full md:max-w-70">
+    <div class="w-full md:max-w-md">
       <div class="p-1.5 bg-white rounded-lg border border-slate-200/75 text-slate-500 shadow-xs">
         <div class="flex flex-col">
           <div 
@@ -145,7 +144,7 @@ const downloadVCard = () => {
       </button>
     </div>
 
-    <div class="hidden md:inline-block w-full md:max-w-75 bg-white rounded-lg border border-slate-200/75 text-slate-500 shadow-xs overflow-hidden">
+    <div class="hidden md:inline-block w-full md:max-w-md bg-white rounded-lg border border-slate-200/75 text-slate-500 shadow-xs overflow-hidden">
       <div class="bg-slate-200/75 p-4 w-full max-w-75"><img src="/QR.svg" alt=""></div>
       <p class="p-3 max-full text-slate-500 font-light text-lg">Отсканируйте этот QR-код, чтобы сохранить мои контакты к себе на телефон. ☺️</p>
     </div>
@@ -156,10 +155,10 @@ const downloadVCard = () => {
       <span class="absolute px-6 py-1 text-sm font-medium text-nowrap text-slate-400 -translate-x-1/2 md:ms-20 lg:ms-40 bg-white left-1/2 rounded-full border border-slate-200 uppercase">Обратная связь</span>
   </div>
 
-  <div class="flex flex-col">
-    <div class="flex flex-col px-6 md:px-12 pb-12 gap-8 w-full xl:max-w-3/4 mx-auto">
+  <div class="flex flex-col px-6 py-6 md:px-12 gap-8 w-full xl:max-w-7xl mx-auto">
+    <div class="flex flex-col gap-8">
       <!--Раздел обратной связи-->
-      <div class="inline-block lg:max-w-2/3 xl:max-w-3/7 bg-white rounded-lg border border-slate-200/75 text-slate-500 shadow-xs overflow-hidden">
+      <div class="inline-block md:max-w-md bg-white rounded-lg border border-slate-200/75 text-slate-500 shadow-xs overflow-hidden">
         <p class="p-3 max-full text-slate-500 font-light text-lg">Вы можете описать свою задачу, заполнив форму обратной связи. Постараюсь не пропустить ваше письмо и ответить как можно быстрее. 🤭</p>
       </div>
 

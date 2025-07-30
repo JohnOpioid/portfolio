@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Грид с новостями -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-6 md:px-12 py-12 mb-12 w-full xl:max-w-3/4 mx-auto content-center min-h-full">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-6 md:px-12 py-12 mb-12 w-full xl:max-w-7xl mx-auto content-center min-h-full">
       <NuxtLink 
         v-for="(news, index) in newsList" 
         :key="index" 

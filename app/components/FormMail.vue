@@ -1,5 +1,5 @@
 <template>
-  <div class="sticky bottom-0">
+  <div>
     <!-- Overlay -->
     <transition name="fade">
       <div 
@@ -13,7 +13,7 @@
     <transition name="slide-up">
       <div 
         v-if="showForm"
-        class="fixed bottom-[7rem] left-0 right-0 bg-white p-6 border-t border-slate-200/75 z-20 mx-4 rounded-lg shadow-sm max-w-full md:max-w-80 md:ml-60 xl:ml-75 flex flex-col items-center"
+        class="fixed bottom-[7rem] left-0 bg-white p-6 border-t border-slate-200/75 z-20 mx-6 rounded-lg shadow-sm max-w-full md:max-w-80 md:ml-[16rem] xl:ml-[33rem] flex flex-col items-center"
       >
         <transition name="fade" mode="out-in">
           <!-- Loading state -->
@@ -42,7 +42,7 @@
           <!-- Form state -->
           <div v-else key="form" class="w-full">
             <div class="flex content-center max-w-3/5 bg-transparent rounded-lg text-slate-500 overflow-hidden mb-4 mx-auto">
-              <img src="public/Sticker_2.png" alt="">
+              <img src="/Sticker_2.png" alt="">
             </div>
             <p class="max-full pb-4 text-slate-400">Пожалуйста, заполните поля, чтобы я смог Вам ответить.</p>
             
