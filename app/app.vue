@@ -47,10 +47,11 @@
                 />
                 </svg>
             </button>
-            
-            
         </div>
-      <Status />
+        <div class="flex gap-4">
+          <Status />
+          <ThemeToggle />
+        </div>
       </div>
       <!-- Оверлей с плавной анимацией -->
             <transition
