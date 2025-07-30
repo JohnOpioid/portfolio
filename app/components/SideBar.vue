@@ -4,7 +4,7 @@
 
 <template>
 <!-- Боковая колонка (1/3 ширины) -->
-<aside class="fixed bg-white dark:bg-slate-800 h-full max-h-screen p-6 xl:p-12 shadow-md w-[12.5rem] xl:w-[17rem]">
+<aside class="fixed bg-white dark:bg-slate-800 h-full p-6 xl:p-12 shadow-md w-[12.5rem] xl:w-[17rem]">
     <div class="hidden md:flex justify-start gap-6">
             <ThemeToggle />
             <Status />
