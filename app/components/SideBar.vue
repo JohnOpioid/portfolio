@@ -4,13 +4,12 @@
 
 <template>
 <!-- Боковая колонка (1/3 ширины) -->
-<aside class="fixed bg-white dark:bg-slate-800 h-full p-6 xl:p-12 shadow-md w-[12.5rem] xl:w-[17rem]">
+<aside class="fixed bg-white dark:bg-slate-800 h-full max-h-screen p-6 xl:p-12 shadow-md w-[12.5rem] xl:w-[17rem]">
     <div class="hidden md:flex justify-start gap-6">
             <ThemeToggle />
             <Status />
         </div>
     <div class="flex flex-col h-full">
-        
         <div class="grow content-center">
             <div class="flex flex-col mt-2 space-y-5">
                 <NuxtLink
@@ -26,11 +25,10 @@
                     {{ link.name }}
                 </NuxtLink>
             </div>
-        </div>
-
+        </div>    
         <div class="aspect-square bg-slate-50 p-4 h-auto w-full max-w-40 flex items-center justify-center text-4xl font-black text-slate-700 dark:bg-slate-700 dark:text-slate-100">
             DЖ<span class="text-indigo-400">O</span>
-        </div>
+        </div>   
     </div> 
 </aside>
 </template>
