@@ -65,17 +65,17 @@
             <div v-if="Array.isArray(item.content)" class="space-y-6">
               <template v-for="(block, i) in item.content" :key="i">
                 <!-- Описание работы -->
-                <div v-if="block.type === 'description'" class="text-slate-600 whitespace-pre-wrap font-light">
+                <div v-if="block.type === 'description'" class="text-slate-600 whitespace-pre-wrap font-light text-lg">
                   <div class="prose" v-html="renderMarkdown(block.value)"></div>
                 </div>
 
                 <!-- Текстовый блок -->
-                <div v-else-if="block.type === 'text'" class="text-slate-600 whitespace-pre-wrap font-light">
+                <div v-else-if="block.type === 'text'" class="text-slate-600 whitespace-pre-wrap font-light text-lg">
                   {{ block.value }}
                 </div>
 
                 <!-- Markdown блок -->
-                <div v-else-if="block.type === 'markdown'" class="prose">
+                <div v-else-if="block.type === 'markdown'" class="prose text-slate-600 whitespace-pre-wrap font-light text-lg">
                   <div v-html="renderMarkdown(block.value)"></div>
                 </div>
 
@@ -279,5 +279,4 @@ const handleTouchEnd = (e) => {
 .modal-slide-prev-leave-to {
   transform: translateX(100%);
 }
-
 </style>
