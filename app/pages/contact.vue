@@ -101,6 +101,10 @@ const downloadVCard = () => {
 <div class="flex flex-col gap-0 min-h-screen bg-[url(/pattern.svg)] bg-center bg-repeat bg-contain bg-fixed">
   <div class="flex flex-col px-6 py-8 md:px-12 gap-8 w-full xl:max-w-7xl mx-auto">
 
+    <div class="inline-block max-w-60 bg-transparent rounded-lg text-slate-500 overflow-hidden">
+      <img src="/Sticker_4.png" alt="">
+    </div>
+
     <div class="inline-block p-3 bg-white rounded-lg border border-slate-200/75 text-slate-500 shadow-xs w-full md:max-w-md">
       <p class="font-bold text-slate-600 text-lg">Ниже представлены мои контакты. Пишите, звоните не стесняйтесь. Я всегда на связи.</p>
       <p class="mt-2">🌙 <span class="italic text-slate-500 font-light text-lg">Да-да, даже ночью...</span></p>
@@ -166,7 +170,7 @@ const downloadVCard = () => {
         <img src="/Sticker.png" alt="">
       </div>
     </div>
-    <div class="sticky bottom-4 px-4 ">
+    <div class="sticky bottom-4">
         <FormMail />
     </div>
   </div>

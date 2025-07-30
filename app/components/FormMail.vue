@@ -88,7 +88,7 @@
     <!-- Bottom panel -->
     <div 
       :class="[
-        'flex px-6 md:px-6 py-4 rounded-lg border border-slate-200/75 relative z-30 transition-colors duration-200',
+        'flex px-4 md:px-4 py-4 rounded-lg border border-slate-200/75 relative z-30 transition-colors duration-200',
         hasMessageError ? 'bg-red-100' : 'bg-white'
       ]"
     >
