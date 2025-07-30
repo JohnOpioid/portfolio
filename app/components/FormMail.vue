@@ -5,7 +5,7 @@
       <div 
         v-if="showForm"
         @click="closeForm"
-        class="fixed inset-0 bg-slate-700/20 bg-opacity-50 z-10 pt-[2rem] pb-[4.5rem]"
+        class="fixed inset-0 bg-slate-700/20 dark:bg-slate-700/80 bg-opacity-50 z-10 pt-[2rem] pb-[4.5rem]"
       ></div>
     </transition>
 
@@ -13,7 +13,7 @@
     <transition name="slide-up">
       <div 
         v-if="showForm"
-        class="fixed bottom-[7rem] left-0 bg-white p-6 border-t border-slate-200/75 z-20 mx-6 rounded-lg shadow-sm max-w-full md:max-w-80 md:ml-[16rem] xl:ml-[33rem] flex flex-col items-center"
+        class="fixed bottom-[7rem] left-0 bg-white dark:bg-slate-800 rounded-lg border border-slate-200/75 dark:border-slate-700 text-slate-500 dark:text-slate-300 p-6 border-t z-20 mx-6 shadow-sm max-w-full md:max-w-80 md:ml-[16rem] xl:ml-[33rem] flex flex-col items-center"
       >
         <transition name="fade" mode="out-in">
           <!-- Loading state -->
@@ -54,7 +54,7 @@
                   v-model="form.name"
                   type="text" 
                   placeholder="Ваше имя*" 
-                  class="placeholder:text-slate-400"
+                  class="placeholder:text-slate-400 dark:bg-slate-700 dark:border-slate-800"
                   :class="inputClass('name')"
                 >
                 <p v-if="errors.name" class="text-red-500 text-xs mt-1">{{ errors.name }}</p>
@@ -66,7 +66,7 @@
                   v-phone-mask
                   type="tel" 
                   placeholder="Номер телефона*" 
-                  class="placeholder:text-slate-400"
+                  class="placeholder:text-slate-400 dark:bg-slate-700 dark:border-slate-800"
                   :class="inputClass('phone')"
                 >
                 <p v-if="errors.phone" class="text-red-500 text-xs mt-1">{{ errors.phone }}</p>
@@ -76,7 +76,7 @@
                 v-model="form.email"
                 type="email" 
                 placeholder="Email (по желанию)"
-                class="w-full px-4 py-2 border border-slate-200/75 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder:text-slate-400"
+                class="w-full px-4 py-2 border border-slate-200/75 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder:text-slate-400 dark:bg-slate-700 dark:border-slate-800"
               >
 
             </div>
@@ -85,11 +85,13 @@
       </div>
     </transition>
 
+    
+
     <!-- Bottom panel -->
     <div 
       :class="[
-        'flex px-4 md:px-4 py-4 rounded-lg border border-slate-200/75 relative z-30 transition-colors duration-200',
-        hasMessageError ? 'bg-red-100' : 'bg-white'
+        'flex px-4 md:px-4 py-4 rounded-lg border border-slate-200/75 dark:border-slate-700 relative z-30 transition-colors duration-200',
+        hasMessageError ? 'bg-red-100' : 'bg-white dark:bg-slate-800'
       ]"
     >
       <input 

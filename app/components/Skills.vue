@@ -73,13 +73,13 @@ const skillsMini = ref(['UI/UX', 'Wireframes', 'Прототипирование
             </div>
             
             <div class="flex flex-col gap-1">
-                <div class="text-slate-700 font-medium uppercase">{{ skill.title }}</div>
-                <p class="text-slate-500 font-light text-md">{{ skill.description }}</p>
+                <div class="text-slate-700 dark:text-slate-200 font-medium uppercase">{{ skill.title }}</div>
+                <p class="text-slate-500 dark:text-slate-300 font-light text-md">{{ skill.description }}</p>
             </div>
             </div>
         </div>
         <div class="flex flex-wrap gap-3">
-            <div class="bg-slate-200 text-slate-400 rounded py-1 px-3"
+            <div class="bg-slate-200 text-slate-400 dark:bg-slate-800 dark:text-slate-400 rounded py-1 px-3"
                 v-for="(skill, index) in skillsMini" 
                 :key="index"
             >{{ skill.title }}</div>

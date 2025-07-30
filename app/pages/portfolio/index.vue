@@ -1,8 +1,8 @@
 <template>
   <div class="flex flex-col px-6 py-6 md:px-12 gap-8 w-full xl:max-w-7xl mx-auto min-h-screen md:h-full md:justify-center">
     <div class="flex flex-col gap-1">
-      <div class="text-slate-700 font-bold text-3xl uppercase">Портфолио</div>
-      <p class="w-full text-slate-500 font-light text-xl">Опубликована только часть моих работ. На остальные наложен NDA. По мере возможности буду дополнять портфолио.</p>
+      <div class="text-slate-700 dark:text-slate-200 font-bold text-3xl uppercase">Портфолио</div>
+      <p class="w-full text-slate-500 dark:text-slate-300 font-light text-xl">Опубликована только часть моих работ. На остальные наложен NDA. По мере возможности буду дополнять портфолио.</p>
     </div>
 
     <!-- Грид с работами -->

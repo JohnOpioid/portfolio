@@ -58,24 +58,24 @@
             </svg>
           </button>
 
-          <div class="bg-white rounded-lg shadow-xl p-6">
-            <h2 class="text-2xl font-bold text-slate-700 mb-4">{{ item.title }}</h2>
+          <div class="bg-white dark:bg-slate-800 rounded-lg shadow-xl p-6">
+            <h2 class="text-2xl font-bold text-slate-700 dark:text-slate-100 mb-4">{{ item.title }}</h2>
             
             <!-- Обработка контента -->
             <div v-if="Array.isArray(item.content)" class="space-y-6">
               <template v-for="(block, i) in item.content" :key="i">
                 <!-- Описание работы -->
-                <div v-if="block.type === 'description'" class="text-slate-600 whitespace-pre-wrap font-light text-lg">
+                <div v-if="block.type === 'description'" class="text-slate-600 dark:text-slate-200 whitespace-pre-wrap font-light text-lg">
                   <div class="prose" v-html="renderMarkdown(block.value)"></div>
                 </div>
 
                 <!-- Текстовый блок -->
-                <div v-else-if="block.type === 'text'" class="text-slate-600 whitespace-pre-wrap font-light text-lg">
+                <div v-else-if="block.type === 'text'" class="text-slate-600 dark:text-slate-200 whitespace-pre-wrap font-light text-lg">
                   {{ block.value }}
                 </div>
 
                 <!-- Markdown блок -->
-                <div v-else-if="block.type === 'markdown'" class="prose text-slate-600 whitespace-pre-wrap font-light text-lg">
+                <div v-else-if="block.type === 'markdown'" class="prose text-slate-600 dark:text-slate-200 whitespace-pre-wrap font-light text-lg">
                   <div v-html="renderMarkdown(block.value)"></div>
                 </div>
 

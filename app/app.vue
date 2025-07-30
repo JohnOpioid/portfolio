@@ -14,14 +14,14 @@
     </div>
     
     <!-- Адаптивный Main контейнер -->
-    <main class="flex-1 min-h-screen md:ml-[12.5rem] xl:ml-[17rem]">      
+    <main class="flex-1 min-h-screen md:ml-[12.5rem] xl:ml-[17rem] bg-slate-50 dark:bg-slate-700 ">      
       
-      <div class="md:hidden sticky top-0 z-10 flex justify-between py-4 px-6 md:px-12 bg-white shadow-sm">
+      <div class="md:hidden sticky top-0 z-10 flex justify-between py-4 px-6 md:px-12 bg-white dark:bg-slate-800 shadow-sm">
         <div class="grow">
             <!-- Кнопка меню с анимированной иконкой -->
             <button 
                 @click="toggleSidebar"
-                class="md:hidden p-2 text-slate-700 transition-all duration-200"
+                class="md:hidden p-2 text-slate-700 dark:text-slate-400 transition-all duration-200"
                 :class="{'left-[calc(16rem+1rem)]': isSidebarOpen}"
             >
                 <svg 

@@ -55,7 +55,7 @@ const textColor = computed(() => {
 </script>
 
 <template>
-  <div class="relative inline-flex items-center rounded-full border border-1 border-slate-300 px-4 py-2 gap-2">
+  <div class="relative inline-flex items-center rounded-full border border-1 border-slate-300 dark:border-slate-700 px-4 py-2 gap-2">
     <span class="relative flex size-3">
       <span 
         class="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"
