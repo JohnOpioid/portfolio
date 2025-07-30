@@ -82,19 +82,33 @@ export default {
     const isSidebarOpen = ref(false);
     const route = useRoute();
 
+    // Функция для управления скроллом
+    const toggleBodyScroll = (disable) => {
+      if (process.client) {
+        document.body.style.overflow = disable ? 'hidden' : '';
+        document.body.style.position = disable ? 'fixed' : '';
+        document.body.style.width = disable ? '100%' : '';
+      }
+    };
+
     const toggleSidebar = () => {
       isSidebarOpen.value = !isSidebarOpen.value;
+      toggleBodyScroll(isSidebarOpen.value);
     };
 
     // Закрываем меню при изменении маршрута
     watch(() => route.path, () => {
-      isSidebarOpen.value = false;
+      if (isSidebarOpen.value) {
+        isSidebarOpen.value = false;
+        toggleBodyScroll(false);
+      }
     });
 
     // Закрываем меню при изменении размера экрана на desktop
     const handleResize = () => {
-      if (window.innerWidth >= 768) {
+      if (window.innerWidth >= 768 && isSidebarOpen.value) {
         isSidebarOpen.value = false;
+        toggleBodyScroll(false);
       }
     };
 
@@ -104,6 +118,8 @@ export default {
 
     onUnmounted(() => {
       window.removeEventListener('resize', handleResize);
+      // Восстанавливаем скролл при размонтировании компонента
+      toggleBodyScroll(false);
     });
 
     return {
