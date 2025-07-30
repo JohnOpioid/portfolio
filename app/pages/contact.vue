@@ -41,7 +41,7 @@ const contacts = ref([
       }
     ],
     title: 'E-mail',
-    data: 'desjohnone@yandex.ru',
+    data: 'iam@desjo.ru',
     type: 'email'
   },
   {
