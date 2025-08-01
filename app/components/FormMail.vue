@@ -100,7 +100,7 @@
         @focus="openForm"
         type="text" 
         placeholder="Опишите задачу..." 
-        class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-slate-700 placeholder:text-slate-400 focus:outline-none bg-transparent"
+        class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-slate-700 dark:text-slate-200 placeholder:text-slate-400 focus:outline-none bg-transparent"
       >
       <button 
         @click="handleButtonClick"
@@ -229,24 +229,39 @@ export default {
     }
 
     const submitForm = async () => {
-      if (!validateForm()) return
+      if (!validateForm()) return;
 
-      isSubmitting.value = true
-      errorMessage.value = ''
+      isSubmitting.value = true;
+      errorMessage.value = '';
 
       try {
-        // Имитация отправки формы
-        await new Promise(resolve => setTimeout(resolve, 1500))
+        const response = await fetch('https://desjo.ru/api/submit-form', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: form.value.name,
+            phone: form.value.phone,
+            email: form.value.email,
+            message: form.value.message
+          }),
+          credentials: 'include' // Если используете куки/сессии
+        });
+
+        if (!response.ok) {
+          throw new Error('Ошибка при отправке формы');
+        }
         
-        // Успешная отправка
-        isSuccess.value = true
-        form.value = { name: '', phone: '', email: '', message: '' }
+        isSuccess.value = true;
+        form.value = { name: '', phone: '', email: '', message: '' };
       } catch (error) {
-        errorMessage.value = 'Произошла ошибка при отправке. Пожалуйста, попробуйте позже.'
+        errorMessage.value = 'Произошла ошибка при отправке. Пожалуйста, попробуйте позже.';
+        console.error('Ошибка отправки формы:', error);
       } finally {
-        isSubmitting.value = false
+        isSubmitting.value = false;
       }
-    }
+    };
 
     return {
       showForm,
