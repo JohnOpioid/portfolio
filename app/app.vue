@@ -21,7 +21,7 @@
             <!-- Кнопка меню с анимированной иконкой -->
             <button 
                 @click="toggleSidebar"
-                class="md:hidden p-2 text-slate-700 dark:text-slate-400 transition-all duration-200"
+                class="md:hidden p-2 text-slate-500 dark:text-slate-400 transition-all duration-200"
                 :class="{'left-[calc(16rem+1rem)]': isSidebarOpen}"
             >
                 <svg 
