@@ -21,6 +21,10 @@ const skills = ref([
       { 
         path: '/icon/css3.svg',
         bgColor: 'bg-blue-400'
+      },
+      { 
+        path: '/icon/js.svg',
+        bgColor: 'bg-yellow-400'
       }
     ],
     title: 'Веб-технологии',
