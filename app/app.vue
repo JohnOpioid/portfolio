@@ -62,7 +62,7 @@
             >
                 <div 
                 v-if="isSidebarOpen"
-                @click="isSidebarOpen = false"
+                @click="toggleSidebar"
                 class="md:hidden fixed inset-0 bg-slate-700/50 bg-opacity-50 z-[5]"
                 ></div>
             </transition>
