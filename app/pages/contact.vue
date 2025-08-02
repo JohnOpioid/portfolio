@@ -155,7 +155,7 @@ const downloadVCard = () => {
   </div>
 
   <div class="inline-flex items-center justify-center w-full">
-      <hr class="w-full h-px my-20 bg-slate-200 dark:bg-slate-800 border-0">
+      <hr class="w-full h-px my-10 bg-slate-200 dark:bg-slate-800 border-0">
       <span class="absolute px-6 py-1 text-sm font-medium text-nowrap text-slate-400 dark:text-slate-500 -translate-x-1/2 md:ms-20 lg:ms-40 bg-white dark:bg-slate-800 left-1/2 rounded-full border border-slate-200 dark:border-slate-800 uppercase">Обратная связь</span>
   </div>
 
