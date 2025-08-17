@@ -35,8 +35,6 @@ useHead({
 
           </div>
         </div>
-
-        <script src="https://desjo.ru/signature.js"></script>
         
         <p class="w-full text-slate-500 dark:text-slate-300 font-light text-xl">
           Молодой специалист в области UI/UX дизайна с опытом работы более года. 
