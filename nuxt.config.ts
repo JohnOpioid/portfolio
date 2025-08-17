@@ -13,4 +13,19 @@ export default defineNuxtConfig({
     fallback: 'light',
     classSuffix: ''
   },
+
+  server: {
+    headers: {
+      '/signature.js': [
+        { key: 'Access-Control-Allow-Origin', value: '*' },
+        { key: 'Content-Type', value: 'application/javascript' }
+      ]
+    }
+  },
+
+  generate: {
+    assets: {
+      version: 'v1' // Добавит хеш к URL
+    }
+  }
 })
