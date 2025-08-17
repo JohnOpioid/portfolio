@@ -25,17 +25,19 @@
     return brightness > 128; // Пороговое значение для светлого/тёмного
   }
 
-  // Создаём элемент
-  const creditLink = document.createElement('div');
+  // Находим целевой элемент по ID
+  const targetElement = document.getElementById('desjo');
+  
+  // Если элемент не найден, выходим
+  if (!targetElement) return;
+  
+  // Проверяем фон целевого элемента
+  const isLight = isLightBackground(targetElement);
+  
+  // Создаём и настраиваем элемент
+  const creditLink = document.createElement('span');
   creditLink.className = 'design-credit';
   
-  // Определяем положение скрипта
-  const parentElement = document.currentScript.parentNode;
-  
-  // Проверяем фон
-  const isLight = isLightBackground(parentElement);
-  
-  // Устанавливаем стили в зависимости от фона
   if (isLight) {
     creditLink.innerHTML = `
       <a href="https://desjo.ru/" target="_blank" style="font-family: sans-serif; color: #314158; font-weight: 300;">
@@ -50,6 +52,6 @@
     `;
   }
   
-  // Вставляем элемент
-  parentElement.insertBefore(creditLink, document.currentScript);
+  // Вставляем элемент в целевой контейнер
+  targetElement.appendChild(creditLink);
 })();
